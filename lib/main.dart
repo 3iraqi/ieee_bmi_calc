@@ -17,6 +17,7 @@ class BmiCalc extends StatelessWidget {
 class BmiScreen extends StatefulWidget {
   BmiScreen({Key? key}) : super(key: key);
 
+
   @override
   State<BmiScreen> createState() => _BmiScreenState();
 }
@@ -24,6 +25,7 @@ class BmiScreen extends StatefulWidget {
 class _BmiScreenState extends State<BmiScreen> {
   ///Variables:
   bool isMale = true;
+  double height=120.0;
 
   @override
   Widget build(BuildContext context) {
@@ -160,16 +162,17 @@ class _BmiScreenState extends State<BmiScreen> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(
+
+                      const SizedBox(
                         height: 5,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.baseline,
                         textBaseline: TextBaseline.alphabetic,
-                        children: const [
+                        children:  [
                           Text(
-                            '180',
+                            '${height.round()}',
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 30,
@@ -192,12 +195,15 @@ class _BmiScreenState extends State<BmiScreen> {
                       const SizedBox(
                         height: 15,
                       ),
+
                       Slider(
-                          value: 120.0,
+                          value: height,
                           max: 220,
                           min: 80,
                           onChanged: (value) {
-                            print(value.round());
+                            setState((){
+                                height=value;});
+
                           })
                     ],
                   ),
